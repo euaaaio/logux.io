@@ -23,12 +23,12 @@ export default async function installTypes (nextSteps) {
   } else {
     await Promise.all(nextSteps())
     await Promise.all([
-      run('Installing Python dependecies', async () => {
+      run('Installing Python dependencies', async () => {
         await exec('make venv && make install', {
           cwd: join(PROJECTS, 'logux-django')
         })
       }),
-      run('Installing types dependecies', async () => {
+      run('Installing TypeScript dependencies', async () => {
         for (let i of dirs) {
           await exec('yarn install --production', { cwd: i })
           if (i.endsWith('logux-redux')) {
